@@ -1,0 +1,68 @@
+<div class="bg-info dialog-container">
+  <h2 mat-dialog-title>Check für Gizzmo</h2>
+  <mat-dialog-content>
+    <form>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isPawsCheck">
+        <label class="form-check-label" for="isPawsCheck">
+          Pfoten
+        </label>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Kommentar</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isChinCheck">
+        <label class="form-check-label" for="isChinCheck">
+          Kinn
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isMouthCheck">
+        <label class="form-check-label" for="isMouthCheck">
+          Maul
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isNoseCheck">
+        <label class="form-check-label" for="isNoseCheck">
+          Nase
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isTeethCheck">
+        <label class="form-check-label" for="isTeethCheck">
+          Zähne
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isEyesCheck">
+        <label class="form-check-label" for="isEyesCheck">
+          Augen
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isEarsCheck">
+        <label class="form-check-label" for="isEarsCheck">
+          Ohren
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isFurCheck">
+        <label class="form-check-label" for="isFurCheck">
+          Fell
+        </label>
+      </div>
+      <div class="mb-3">
+        <label for="weight" class="form-label">Gewicht</label>
+        <input type="number" class="form-control" id="weight">
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="button-container">
+    <button [mat-dialog-close]="true" class="btn btn-danger">Abbrechen</button>
+    <button class="btn btn-secondary">Speichern</button>
+  </mat-dialog-actions>
+
+</div>

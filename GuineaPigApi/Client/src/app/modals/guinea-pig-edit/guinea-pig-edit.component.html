@@ -1,0 +1,29 @@
+<div class="bg-secondary dialog-container">
+  <h2 mat-dialog-title>{{isUpdate ? currentGuineaPig.name + ' Bearbeiten' : 'Neues Meerschweinchen hinzufügen'}}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="guineaPigForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" formControlName="name" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="gender">Geschlecht</label>
+        <select class="form-select form-select-sm" formControlName="gender" id="gender">
+          <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="race" class="form-label">Rasse</label>
+        <input type="text" formControlName="race" class="form-control" id="race">
+      </div>
+      <div class="mb-3">
+        <label for="birth" class="form-label">Geburt</label>
+        <input type="date" formControlName="birth" class="form-control" id="birth">
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="button-container">
+    <button type="button" [mat-dialog-close]="true" class="btn btn-primary">Schliessen</button>
+    <button (click)="onSubmit()" class="btn btn-secondary">Speichern</button>
+  </mat-dialog-actions>
+</div>

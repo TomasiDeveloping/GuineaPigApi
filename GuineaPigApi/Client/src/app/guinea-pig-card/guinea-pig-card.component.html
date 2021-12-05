@@ -1,0 +1,27 @@
+<div class="card text-white bg-primary">
+  <div class="card-header text-success">{{guineaPig.name}}</div>
+  <div class="card-body">
+    <ul class="card-text">
+      <li>Alter: <span class="text-success">{{guineaPig.birth | dateAgo}}</span></li>
+      <li>Geschlecht: <span class="text-success">{{guineaPig.gender}}</span></li>
+      <li>Rasse: <span class="text-success">{{guineaPig.race}}</span></li>
+    </ul>
+    <div class="line"></div>
+    <ul>
+      <ng-template [ngIf]="guineaPig.lastHealthCheck">
+        <li>Letzer Check vor: <span class="text-success">{{guineaPig.lastHealthCheck | dateAgo}}</span></li>
+      </ng-template>
+      <ng-template [ngIf]="!guineaPig.lastHealthCheck">
+        <li>Letzer Check vor: <span class="text-success">Noch kein Check</span></li>
+      </ng-template>
+      <div class="button-container">
+        <button (click)="onUpdateGuineaPig()" class="btn btn-secondary btn-sm">Bearbeiten</button>
+        <button class="btn btn-secondary btn-sm">Checks</button>
+      </div>
+    </ul>
+    <div class="line"></div>
+    <div class="button">
+      <button (click)="onAddHealthCheck()" class="btn btn-secondary">Neuer Check</button>
+    </div>
+  </div>
+</div>

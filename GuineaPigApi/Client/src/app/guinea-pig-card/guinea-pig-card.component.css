@@ -1,0 +1,43 @@
+.card {
+  width: 80%;
+  margin: 2rem auto 5rem auto;
+}
+.card-header {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+li {
+  padding: 0.1rem;
+}
+span {
+  margin-left: 0.5rem;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.button-container button {
+  width: 100px;
+  margin: 5px 10px;
+}
+.line {
+  width: 90%;
+  margin: 1rem auto;
+  height: 2px;
+  background-color: gold;
+}
