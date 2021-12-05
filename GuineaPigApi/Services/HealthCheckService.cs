@@ -36,12 +36,16 @@ namespace GuineaPigApi.Services
             var healthChecks = await _context.HealthChecks
                 .AsNoTracking()
                 .Where(h => h.GuineaPigId == guinePigId)
+                .OrderByDescending(h => h.HealthCheckDate)
+                .Take(10)
                 .ToListAsync();
             return _mapper.Map<List<HealthCheckDTO>>(healthChecks);
         }
 
         public async Task<HealthCheckDTO> InsertHealthCheckAsync(HealthCheckDTO healthCheckDTO)
         {
+            var guineaPig = await _context.GuineaPigs.FirstOrDefaultAsync(g => g.Id == healthCheckDTO.GuineaPigId);
+            guineaPig.LastHealthCheck = DateTime.Now;
             var newHealthCheck = _mapper.Map<HealthCheck>(healthCheckDTO);
             await _context.AddAsync(newHealthCheck);
             await _context.SaveChangesAsync();

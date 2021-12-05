@@ -1,11 +1,21 @@
 ::ng-deep .mat-dialog-container {
   padding: 0;
 }
+
 .dialog-container {
   padding: 24px;
   color: white;
 }
+
 .button-container {
   display: flex;
   justify-content: flex-end;
+}
+
+h2 {
+  color: black;
+}
+
+.material-icons {
+  cursor: pointer;
 }

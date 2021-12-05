@@ -17,7 +17,7 @@
         public string TeethComment { get; set; }
         public bool IsEyesCheck { get; set; }
         public string EyesComment { get; set; }
-        public bool ISEarsCheck { get; set; }
+        public bool IsEarsCheck { get; set; }
         public string EarsComment { get; set; }
         public bool IsFurCheck { get; set; }
         public string FurComment { get; set; }

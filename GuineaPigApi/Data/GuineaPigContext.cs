@@ -28,7 +28,7 @@ namespace GuineaPigApi.Data
             modelBuilder.Entity<HealthCheck>().Property(h => h.IsNoseCheck).IsRequired().HasDefaultValue(false);
             modelBuilder.Entity<HealthCheck>().Property(h => h.IsTeethCheck).IsRequired().HasDefaultValue(false);
             modelBuilder.Entity<HealthCheck>().Property(h => h.IsEyesCheck).IsRequired().HasDefaultValue(false);
-            modelBuilder.Entity<HealthCheck>().Property(h => h.ISEarsCheck).IsRequired().HasDefaultValue(false);
+            modelBuilder.Entity<HealthCheck>().Property(h => h.IsEarsCheck).IsRequired().HasDefaultValue(false);
             modelBuilder.Entity<HealthCheck>().Property(h => h.IsFurCheck).IsRequired().HasDefaultValue(false);
 
             modelBuilder.Entity<HealthCheck>().Property(h => h.HealthCheckDate).IsRequired().HasDefaultValue(DateTime.Now);

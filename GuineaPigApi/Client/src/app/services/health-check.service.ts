@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -10,7 +10,8 @@ import {HealthCheckModel} from "../models/healthCheck.model";
 export class HealthCheckService {
   private readonly serviceUrl = environment.apiUrl + 'HealthChecks/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getHealthChecks(): Observable<HealthCheckModel[]> {
     return this.http.get<HealthCheckModel[]>(this.serviceUrl);

@@ -3,8 +3,8 @@
   <mat-dialog-content>
     <form [formGroup]="guineaPigForm">
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" formControlName="name" class="form-control" id="name">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-control" formControlName="name" id="name" type="text">
       </div>
       <div class="mb-3">
         <label for="gender">Geschlecht</label>
@@ -13,17 +13,17 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="race" class="form-label">Rasse</label>
-        <input type="text" formControlName="race" class="form-control" id="race">
+        <label class="form-label" for="race">Rasse</label>
+        <input class="form-control" formControlName="race" id="race" type="text">
       </div>
       <div class="mb-3">
-        <label for="birth" class="form-label">Geburt</label>
-        <input type="date" formControlName="birth" class="form-control" id="birth">
+        <label class="form-label" for="birth">Geburt</label>
+        <input class="form-control" formControlName="birth" id="birth" type="date">
       </div>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions class="button-container">
-    <button type="button" [mat-dialog-close]="true" class="btn btn-primary">Schliessen</button>
+    <button [mat-dialog-close]="true" class="btn btn-primary" type="button">Schliessen</button>
     <button (click)="onSubmit()" class="btn btn-secondary">Speichern</button>
   </mat-dialog-actions>
 </div>

@@ -4,6 +4,7 @@ using GuineaPigApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuineaPigApi.Migrations
 {
     [DbContext(typeof(GuineaPigContext))]
-    partial class GuineaPigContextModelSnapshot : ModelSnapshot
+    [Migration("20211204191236_fixName")]
+    partial class fixName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,6 @@ namespace GuineaPigApi.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime?>("LastHealthCheck")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -86,7 +85,7 @@ namespace GuineaPigApi.Migrations
                     b.Property<DateTime>("HealthCheckDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 12, 5, 14, 27, 0, 153, DateTimeKind.Local).AddTicks(9171));
+                        .HasDefaultValue(new DateTime(2021, 12, 4, 20, 12, 36, 424, DateTimeKind.Local).AddTicks(122));
 
                     b.Property<bool>("IsChinCheck")
                         .ValueGeneratedOnAdd()

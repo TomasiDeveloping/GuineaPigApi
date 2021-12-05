@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -10,7 +10,8 @@ import {GuineaPigModel} from "../models/guineaPig.model";
 export class GuineaPigService {
   private readonly serviceUrl = environment.apiUrl + 'GuineaPigs/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getGuineaPigs(): Observable<GuineaPigModel[]> {
     return this.http.get<GuineaPigModel[]>(this.serviceUrl);

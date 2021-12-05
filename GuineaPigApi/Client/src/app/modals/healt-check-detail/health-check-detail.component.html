@@ -1,1 +1,147 @@
-<p>healt-check-detail works!</p>
+<div class="bg-info dialog-container">
+  <h2 mat-dialog-title>Detail</h2>
+  <mat-dialog-content>
+    <form>
+      <!--      PawsCheck checkbox and switch-->
+      <div class="form-group col-6">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isPawsCheck" class="form-check-input" id="isPawsCheck" name="isPawsCheck"
+                 onclick="return false;"
+                 type="checkbox">
+          <label class="form-check-label" for="isPawsCheck">
+            Pfoten
+          </label>
+        </div>
+      </div>
+      <!--      Paws comment-->
+      <div *ngIf="currentHealthCheck.pawsComment" class="mb-3">
+        <label class="form-label" for="pawsComment">Kommentar für Pfoten</label>
+        <textarea [ngModel]="currentHealthCheck.pawsComment" class="form-control" id="pawsComment" name="pawsComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      ChinCheck checkbox and switch-->
+      <div class="form-group col-6">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isChinCheck" class="form-check-input" id="isChinCheck" name="isChinCheck"
+                 onclick="return false;"
+                 type="checkbox">
+          <label class="form-check-label" for="isChinCheck">
+            Kinn
+          </label>
+        </div>
+      </div>
+      <!--      Chin comment-->
+      <div *ngIf="currentHealthCheck.chinComment" class="mb-3">
+        <label class="form-label" for="chinComment">Kommentar für Kinn</label>
+        <textarea [ngModel]="currentHealthCheck.chinComment" class="form-control" id="chinComment" name="chinComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      MouthCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isMouthCheck" class="form-check-input" id="isMouthCheck"
+                 name="isMouthCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isMouthCheck">
+            Maul
+          </label>
+        </div>
+      </div>
+      <!--      Mouth comment-->
+      <div *ngIf="currentHealthCheck.mouthComment" class="mb-3">
+        <label class="form-label" for="mouthComment">Kommentar für Maul</label>
+        <textarea [ngModel]="currentHealthCheck.mouthComment" class="form-control" id="mouthComment" name="mouthComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      NoseCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isNoseCheck" class="form-check-input" id="isNoseCheck" name="isNoseCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isNoseCheck">
+            Nase
+          </label>
+        </div>
+      </div>
+      <!--      Nose comment-->
+      <div *ngIf="currentHealthCheck.noseComment" class="mb-3">
+        <label class="form-label" for="noseComment">Kommentar für Nase</label>
+        <textarea [ngModel]="currentHealthCheck.noseComment" class="form-control" id="noseComment" name="noseComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      TeethCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isTeethCheck" class="form-check-input" id="isTeethCheck"
+                 name="isTeethCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isTeethCheck">
+            Zähne
+          </label>
+        </div>
+      </div>
+      <!--      Teeth comment -->
+      <div *ngIf="currentHealthCheck.teethComment" class="mb-3">
+        <label class="form-label" for="teethComment">Kommentar für Zähne</label>
+        <textarea [ngModel]="currentHealthCheck.teethComment" class="form-control" id="teethComment" name="teethComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      EyesCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isEyesCheck" class="form-check-input" id="isEyesCheck" name="isEyesCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isEyesCheck">
+            Augen
+          </label>
+        </div>
+      </div>
+      <!--      Eyes comment-->
+      <div *ngIf="currentHealthCheck.eyesComment" class="mb-3">
+        <label class="form-label" for="eyesComment">Kommentar für Augen</label>
+        <textarea [ngModel]="currentHealthCheck.eyesComment" class="form-control" id="eyesComment" name="eyesComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      EarsCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isEarsCheck" class="form-check-input" id="isEarsCheck" name="isEarsCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isEarsCheck">
+            Ohren
+          </label>
+        </div>
+      </div>
+      <!--      Ears comment-->
+      <div *ngIf="currentHealthCheck.earsComment" class="mb-3">
+        <label class="form-label" for="earsComment">Kommentar für Ohren</label>
+        <textarea [ngModel]="currentHealthCheck.earsComment" class="form-control" id="earsComment" name="earsComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <!--      FurCheck checkBox and switch-->
+      <div class="form-group col-4">
+        <div class="form-check">
+          <input [ngModel]="currentHealthCheck.isFurCheck" class="form-check-input" id="isFurCheck" name="isFurCheck"
+                 onclick="return false;" type="checkbox">
+          <label class="form-check-label" for="isFurCheck">
+            Fell
+          </label>
+        </div>
+      </div>
+      <!--      Fur comment-->
+      <div *ngIf="currentHealthCheck.furComment" class="mb-3">
+        <label class="form-label" for="furComment">Kommentar für Fell</label>
+        <textarea [ngModel]="currentHealthCheck.furComment" class="form-control" id="furComment" name="furComment"
+                  readonly rows="2"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="weight">Gewicht</label>
+        <input [ngModel]="currentHealthCheck.weight" class="form-control" id="weight" name="weight" type="number">
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="button-container">
+    <button [mat-dialog-close]="true" class="btn btn-danger" type="button">Schliessen</button>
+  </mat-dialog-actions>
+</div>
+

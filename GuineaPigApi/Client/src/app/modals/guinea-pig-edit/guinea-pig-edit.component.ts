@@ -1,8 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup} from "@angular/forms";
 import {GuineaPigModel} from "../../models/guineaPig.model";
 import {GuineaPigService} from "../../services/guinea-pig.service";
+import {ToastrService} from "ngx-toastr";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-guinea-pig-edit',
@@ -18,6 +20,7 @@ export class GuineaPigEditComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private guineaPigService: GuineaPigService,
+              private toastr: ToastrService,
               private dialogRef: MatDialogRef<GuineaPigEditComponent>) {
     this.isUpdate = data.isUpadte;
     this.currentGuineaPig = data.guineaPig;
@@ -33,13 +36,23 @@ export class GuineaPigEditComponent implements OnInit {
       this.guineaPigService.updateGuineaPig(guineaPig.id, guineaPig).subscribe((response) => {
         if (response) {
           this.dialogRef.close(response);
+          this.toastr.success(response.name + ' erfolgreich aktualisiert', 'Update');
         }
+      }, error => {
+        Swal.fire('Update', 'Fehler beim Update, ' + error.error, 'error').then(() => {
+          this.dialogRef.close();
+        })
       });
     } else {
       this.guineaPigService.insertGuineaPig(guineaPig).subscribe((response) => {
         if (response) {
           this.dialogRef.close('update');
+          this.toastr.success(response.name + ' erfolgreich hinzugefügt', 'Hinzugefügt');
         }
+      }, error => {
+        Swal.fire('Hinzufügen', 'Fehler beim hinzufügen, ' + error.error, 'error').then(() => {
+          this.dialogRef.close();
+        })
       });
     }
   }

@@ -7,5 +7,6 @@
         public DateTime Birth { get; set; }
         public string Gender { get; set; }
         public string Race { get; set; }
+        public DateTime? LastHealthCheck { get; set; }
     }
 }

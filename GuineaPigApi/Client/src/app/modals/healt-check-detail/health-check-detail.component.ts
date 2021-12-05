@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {HealthCheckModel} from "../../models/healthCheck.model";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-healt-check-detail',
-  templateUrl: './healt-check-detail.component.html',
-  styleUrls: ['./healt-check-detail.component.css']
+  selector: 'app-health-check-detail',
+  templateUrl: './health-check-detail.component.html',
+  styleUrls: ['./health-check-detail.component.css']
 })
-export class HealtCheckDetailComponent implements OnInit {
+export class HealthCheckDetailComponent implements OnInit {
 
-  constructor() { }
+  currentHealthCheck: HealthCheckModel;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    this.currentHealthCheck = data;
+  }
 
   ngOnInit(): void {
   }
