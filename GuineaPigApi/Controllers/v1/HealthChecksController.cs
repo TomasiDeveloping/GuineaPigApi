@@ -43,24 +43,48 @@ namespace GuineaPigApi.Controllers.v1
         [HttpPost]
         public async Task<IActionResult> InsertHealthCheck(HealthCheckDTO healthCheckDTO)
         {
-            var newHealthCheck = await _service.InsertHealthCheckAsync(healthCheckDTO);
-            return Ok(newHealthCheck);
+            try
+            {
+                var newHealthCheck = await _service.InsertHealthCheckAsync(healthCheckDTO);
+                return Ok(newHealthCheck);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpPut("{healthCheckId:int}")]
         public async Task<IActionResult> UpdateHealthCheck(int healthCheckId, HealthCheckDTO healthCheckDTO)
         {
-            if (healthCheckId != healthCheckDTO.Id) return BadRequest("Falsche ID");
-            var updatedHealthCheck = await _service.UpdateHealthCheckAsync(healthCheckId, healthCheckDTO);
-            return Ok(updatedHealthCheck);
+            try
+            {
+                if (healthCheckId != healthCheckDTO.Id) return BadRequest("Falsche ID");
+                var updatedHealthCheck = await _service.UpdateHealthCheckAsync(healthCheckId, healthCheckDTO);
+                return Ok(updatedHealthCheck);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpDelete("{healthCheckId:int}")]
         public async Task<IActionResult> DeleteHealthCheck(int healthCheckId)
         {
-            var checkDelete = await _service.DeleteHealthCheckAsync(healthCheckId);
-            if (!checkDelete) return BadRequest("Konnte nicht gelöscht werden");
-            return Ok();
+            try
+            {
+                var checkDelete = await _service.DeleteHealthCheckAsync(healthCheckId);
+                if (!checkDelete) return BadRequest("Konnte nicht gelöscht werden");
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }

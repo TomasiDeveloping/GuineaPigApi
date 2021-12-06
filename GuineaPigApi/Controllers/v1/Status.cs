@@ -11,7 +11,15 @@ namespace GuineaPigApi.Controllers.v1
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("API is running");
+            try
+            {
+                return Ok("API is running");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }

@@ -35,25 +35,48 @@ namespace GuineaPigApi.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertGuineaPig(GuineaPigDTO guineaPigDTO)
         {
-            if (guineaPigDTO == null) return BadRequest("NO DATA");
-            var newGuineaPig = await _service.InsertGuineaPigAsync(guineaPigDTO);
-            return Ok(newGuineaPig);
+            try
+            {
+                if (guineaPigDTO == null) return BadRequest("NO DATA");
+                var newGuineaPig = await _service.InsertGuineaPigAsync(guineaPigDTO);
+                return Ok(newGuineaPig);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{guineaPigId:int}")]
         public async Task<IActionResult> UpdateGuineaPig(int guineaPigId, GuineaPigDTO guineaPigDTO)
         {
-            if (guineaPigId != guineaPigDTO.Id) return BadRequest("Falsche ID");
-            var updatedGuineaPig = await _service.UpdateGuineaPigAsync(guineaPigId, guineaPigDTO);
-            return Ok(updatedGuineaPig);
+            try
+            {
+                if (guineaPigId != guineaPigDTO.Id) return BadRequest("Falsche ID");
+                var updatedGuineaPig = await _service.UpdateGuineaPigAsync(guineaPigId, guineaPigDTO);
+                return Ok(updatedGuineaPig);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpDelete("{guineaPigId}")]
         public async Task<IActionResult> DeleteGuineaPig(int guineaPigId)
         {
-            var checkDelete = await _service.DeleteGuineaPigAsync(guineaPigId);
-            if (!checkDelete) return BadRequest("Konnte nicht gelöscht werden");
-            return Ok(checkDelete);
+            try
+            {
+                var checkDelete = await _service.DeleteGuineaPigAsync(guineaPigId);
+                if (!checkDelete) return BadRequest("Konnte nicht gelöscht werden");
+                return Ok(checkDelete);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }
