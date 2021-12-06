@@ -17,7 +17,8 @@ export class GuineaPigCardComponent implements OnInit {
   // @ts-ignore
   @Input() guineaPig: GuineaPigModel;
 
-  constructor(private dialog: MatDialog, private guineaPigService: GuineaPigService) {
+  constructor(private dialog: MatDialog,
+              private guineaPigService: GuineaPigService) {
   }
 
   ngOnInit(): void {

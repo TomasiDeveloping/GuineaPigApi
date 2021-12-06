@@ -14,9 +14,6 @@ export class SpinnerInterceptor implements HttpInterceptor {
   constructor(private spinnerService: SpinnerService) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.includes('CheckEmailExists')) {
-      return next.handle(req);
-    }
     this.spinnerService.busy();
     return next.handle(req).pipe(
       finalize(() => {
