@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  // TODO: Add URL
-  apiUrl: ''
+  apiUrl: 'https://guinepigapi.azurewebsites.net/api/v1/'
 };

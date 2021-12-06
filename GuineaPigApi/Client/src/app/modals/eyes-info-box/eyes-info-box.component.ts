@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-eyes-info-box',
@@ -7,10 +8,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class EyesInfoBoxComponent implements OnInit {
 
-  constructor() {
+  constructor(private dialogRef: MatDialogRef<EyesInfoBoxComponent>) {
   }
 
   ngOnInit(): void {
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
 }

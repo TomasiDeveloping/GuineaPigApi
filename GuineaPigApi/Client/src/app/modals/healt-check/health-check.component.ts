@@ -112,4 +112,8 @@ export class HealthCheckComponent implements OnInit {
       width: '80%'
     })
   }
+
+  onClose() {
+    this.dialogRef.close();
+  }
 }

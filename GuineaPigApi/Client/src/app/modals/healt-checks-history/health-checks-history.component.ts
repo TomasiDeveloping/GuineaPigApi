@@ -1,9 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HealthCheckModel} from "../../models/healthCheck.model";
-import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {HealthCheckService} from "../../services/health-check.service";
 import {GuineaPigModel} from "../../models/guineaPig.model";
-import {HealthCheckDetailComponent} from "../healt-check-detail/health-check-detail.component";
+import {
+  HealthCheckDetailComponent
+} from "../healt-check-detail/health-check-detail.component";
+
 
 @Component({
   selector: 'app-health-checks-history',
@@ -17,6 +20,7 @@ export class HealthChecksHistoryComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private healthCheckService: HealthCheckService,
+              private dialogRef: MatDialogRef<HealthChecksHistoryComponent>,
               private dialog: MatDialog) {
     this.currentGuineaPig = data;
   }
@@ -36,5 +40,9 @@ export class HealthChecksHistoryComponent implements OnInit {
       width: '100%',
       data: healthCheck
     })
+  }
+
+  onClose() {
+    this.dialogRef.close();
   }
 }

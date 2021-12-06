@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {GuineaPigCardComponent} from './guinea-pig-card/guinea-pig-card.component';
 import {HealthCheckComponent} from './modals/healt-check/health-check.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,6 +18,8 @@ import {GuineaPigEditComponent} from './modals/guinea-pig-edit/guinea-pig-edit.c
 import {ToastrModule} from "ngx-toastr";
 import {HealthChecksHistoryComponent} from './modals/healt-checks-history/health-checks-history.component';
 import {HealthCheckDetailComponent} from './modals/healt-check-detail/health-check-detail.component';
+import {SpinnerInterceptor} from "./interceptors/spinner.interceptor";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -44,9 +46,12 @@ import {HealthCheckDetailComponent} from './modals/healt-check-detail/health-che
     FormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-    })
+    }),
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

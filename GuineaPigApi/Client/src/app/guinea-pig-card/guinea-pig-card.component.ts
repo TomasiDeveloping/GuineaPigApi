@@ -41,7 +41,7 @@ export class GuineaPigCardComponent implements OnInit {
       data: {isUpdate: true, guineaPig: this.guineaPig}
     })
     dialogRef.afterClosed().subscribe(response => {
-      if (response.id) {
+      if (response) {
         this.guineaPig = response;
       }
     });

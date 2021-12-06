@@ -22,7 +22,7 @@ export class GuineaPigEditComponent implements OnInit {
               private guineaPigService: GuineaPigService,
               private toastr: ToastrService,
               private dialogRef: MatDialogRef<GuineaPigEditComponent>) {
-    this.isUpdate = data.isUpadte;
+    this.isUpdate = data.isUpdate;
     this.currentGuineaPig = data.guineaPig;
   }
 
@@ -58,12 +58,22 @@ export class GuineaPigEditComponent implements OnInit {
   }
 
   private initForm() {
+    let lastHealthCheck = null;
+    if (this.currentGuineaPig.lastHealthCheck) {
+      lastHealthCheck = this.currentGuineaPig.lastHealthCheck;
+    }
+
     this.guineaPigForm = new FormGroup({
       id: new FormControl(this.currentGuineaPig.id),
       name: new FormControl(this.currentGuineaPig.name),
       gender: new FormControl(this.currentGuineaPig.gender),
       race: new FormControl(this.currentGuineaPig.race),
       birth: new FormControl(new Date(this.currentGuineaPig.birth).toISOString().substr(0, 10)),
+      lastHealthCheck: new FormControl(lastHealthCheck)
     });
+  }
+
+  onClose() {
+    this.dialogRef.close();
   }
 }

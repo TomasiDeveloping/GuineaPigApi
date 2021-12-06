@@ -5,14 +5,23 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {finalize, Observable} from 'rxjs';
+import {SpinnerService} from "../services/spinner.service";
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private spinnerService: SpinnerService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (req.url.includes('CheckEmailExists')) {
+      return next.handle(req);
+    }
+    this.spinnerService.busy();
+    return next.handle(req).pipe(
+      finalize(() => {
+        this.spinnerService.idle();
+      })
+    );
   }
 }
