@@ -30,3 +30,10 @@ Ist eien kleine API um Meerschweinchen Gesundheits - Checks zu speichern.
 <div>
   <img src="https://github.com/TomasiDeveloping/GuineaPigApi/blob/master/GuineaPigApi/Screenshots/guinePig6.png" width="300" height="auto" />
 </div>
+
+# Projekt
+## Backend
+REST-API in .net Core 6
+
+## Frontend
+Angular 13.0.4
