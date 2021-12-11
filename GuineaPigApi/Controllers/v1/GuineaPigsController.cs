@@ -1,9 +1,8 @@
-﻿using GuineaPigApi.DTO_s;
+﻿using GuineaPigApi.DTOs;
 using GuineaPigApi.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GuineaPigApi.Controllers
+namespace GuineaPigApi.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Route("api/v{v:ApiVersion}/[controller]")]
@@ -33,12 +32,12 @@ namespace GuineaPigApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertGuineaPig(GuineaPigDTO guineaPigDTO)
+        public async Task<IActionResult> InsertGuineaPig(GuineaPigDto? guineaPigDto)
         {
             try
             {
-                if (guineaPigDTO == null) return BadRequest("NO DATA");
-                var newGuineaPig = await _service.InsertGuineaPigAsync(guineaPigDTO);
+                if (guineaPigDto == null) return BadRequest("NO DATA");
+                var newGuineaPig = await _service.InsertGuineaPigAsync(guineaPigDto);
                 return Ok(newGuineaPig);
             }
             catch (Exception ex)
@@ -48,12 +47,12 @@ namespace GuineaPigApi.Controllers
         }
 
         [HttpPut("{guineaPigId:int}")]
-        public async Task<IActionResult> UpdateGuineaPig(int guineaPigId, GuineaPigDTO guineaPigDTO)
+        public async Task<IActionResult> UpdateGuineaPig(int guineaPigId, GuineaPigDto guineaPigDto)
         {
             try
             {
-                if (guineaPigId != guineaPigDTO.Id) return BadRequest("Falsche ID");
-                var updatedGuineaPig = await _service.UpdateGuineaPigAsync(guineaPigId, guineaPigDTO);
+                if (guineaPigId != guineaPigDto.Id) return BadRequest("Falsche ID");
+                var updatedGuineaPig = await _service.UpdateGuineaPigAsync(guineaPigId, guineaPigDto);
                 return Ok(updatedGuineaPig);
             }
             catch(Exception ex)

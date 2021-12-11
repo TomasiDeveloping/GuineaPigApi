@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GuineaPigApi.Data;
-using GuineaPigApi.DTO_s;
+using GuineaPigApi.DTOs;
 using GuineaPigApi.Interfaces;
 using GuineaPigApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,50 +16,50 @@ namespace GuineaPigApi.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<HealthCheckDTO>> GetHealthChecksAsync()
+        public async Task<List<HealthCheckDto>> GetHealthChecksAsync()
         {
             var healthChecks = await _context.HealthChecks
                 .AsNoTracking()
                 .ToListAsync();
-            return _mapper.Map<List<HealthCheckDTO>>(healthChecks);
+            return _mapper.Map<List<HealthCheckDto>>(healthChecks);
         }
-        public async Task<HealthCheckDTO> GetHealthCheckByIdAsync(int healthCheckId)
+        public async Task<HealthCheckDto> GetHealthCheckByIdAsync(int healthCheckId)
         {
             var healthCheck = await _context.HealthChecks
                 .AsNoTracking()
                 .FirstOrDefaultAsync(h => h.Id == healthCheckId);
-            return _mapper.Map<HealthCheckDTO>(healthCheck);
+            return _mapper.Map<HealthCheckDto>(healthCheck);
         }
 
-        public async Task<List<HealthCheckDTO>> GetHealthChecksByGuinePigIdAsync(int guinePigId)
+        public async Task<List<HealthCheckDto>> GetHealthChecksByGuineaPigIdAsync(int guineaPigId)
         {
             var healthChecks = await _context.HealthChecks
                 .AsNoTracking()
-                .Where(h => h.GuineaPigId == guinePigId)
+                .Where(h => h.GuineaPigId == guineaPigId)
                 .OrderByDescending(h => h.HealthCheckDate)
                 .Take(10)
                 .ToListAsync();
-            return _mapper.Map<List<HealthCheckDTO>>(healthChecks);
+            return _mapper.Map<List<HealthCheckDto>>(healthChecks);
         }
 
-        public async Task<HealthCheckDTO> InsertHealthCheckAsync(HealthCheckDTO healthCheckDTO)
+        public async Task<HealthCheckDto> InsertHealthCheckAsync(HealthCheckDto healthCheckDto)
         {
-            var guineaPig = await _context.GuineaPigs.FirstOrDefaultAsync(g => g.Id == healthCheckDTO.GuineaPigId);
-            guineaPig.LastHealthCheck = DateTime.Now;
-            var newHealthCheck = _mapper.Map<HealthCheck>(healthCheckDTO);
+            var guineaPig = await _context.GuineaPigs.FirstOrDefaultAsync(g => g.Id == healthCheckDto.GuineaPigId);
+            if (guineaPig != null) guineaPig.LastHealthCheck = DateTime.Now;
+            var newHealthCheck = _mapper.Map<HealthCheck>(healthCheckDto);
             await _context.AddAsync(newHealthCheck);
             await _context.SaveChangesAsync();
-            return _mapper.Map<HealthCheckDTO>(newHealthCheck);
+            return _mapper.Map<HealthCheckDto>(newHealthCheck);
         }
 
-        public async Task<HealthCheckDTO> UpdateHealthCheckAsync(int healthCheckId, HealthCheckDTO healthCheckDTO)
+        public async Task<HealthCheckDto?> UpdateHealthCheckAsync(int healthCheckId, HealthCheckDto healthCheckDto)
         {
             var healthCheckToUpdate = await _context.HealthChecks
                 .FirstOrDefaultAsync(h => h.Id == healthCheckId);
             if (healthCheckToUpdate == null) return null;
-            _mapper.Map<HealthCheckDTO, HealthCheck>(healthCheckDTO, healthCheckToUpdate);
+            _mapper.Map(healthCheckDto, healthCheckToUpdate);
             await _context.SaveChangesAsync();
-            return _mapper.Map<HealthCheckDTO>(healthCheckToUpdate);
+            return _mapper.Map<HealthCheckDto>(healthCheckToUpdate);
         }
 
         public async Task<bool> DeleteHealthCheckAsync(int healthCheckId)

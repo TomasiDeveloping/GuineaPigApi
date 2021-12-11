@@ -1,14 +1,14 @@
-﻿using GuineaPigApi.DTO_s;
+﻿using GuineaPigApi.DTOs;
 
 namespace GuineaPigApi.Interfaces
 {
     public interface IHealthCheckService
     {
-        Task<List<HealthCheckDTO>> GetHealthChecksAsync();
-        Task<List<HealthCheckDTO>> GetHealthChecksByGuinePigIdAsync(int guinePigId);
-        Task<HealthCheckDTO> GetHealthCheckByIdAsync(int healthCheckId);
-        Task<HealthCheckDTO> InsertHealthCheckAsync(HealthCheckDTO healthCheckDTO);
-        Task<HealthCheckDTO> UpdateHealthCheckAsync(int healthCheckId, HealthCheckDTO healthCheck);
+        Task<List<HealthCheckDto>> GetHealthChecksAsync();
+        Task<List<HealthCheckDto>> GetHealthChecksByGuineaPigIdAsync(int guineaPigId);
+        Task<HealthCheckDto> GetHealthCheckByIdAsync(int healthCheckId);
+        Task<HealthCheckDto> InsertHealthCheckAsync(HealthCheckDto healthCheckDto);
+        Task<HealthCheckDto?> UpdateHealthCheckAsync(int healthCheckId, HealthCheckDto healthCheck);
         Task<bool> DeleteHealthCheckAsync(int healthCheckId);
 
     }

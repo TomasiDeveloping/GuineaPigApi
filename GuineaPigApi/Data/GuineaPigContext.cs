@@ -5,9 +5,10 @@ namespace GuineaPigApi.Data
 {
     public class GuineaPigContext : DbContext 
     {
-        public GuineaPigContext(DbContextOptions<GuineaPigContext> options): base(options)
+        public GuineaPigContext(DbContextOptions<GuineaPigContext> options, DbSet<GuineaPig> guineaPigs, DbSet<HealthCheck> healthChecks): base(options)
         {
-
+            GuineaPigs = guineaPigs;
+            HealthChecks = healthChecks;
         }
         public DbSet<GuineaPig> GuineaPigs { get; set; }
         public DbSet<HealthCheck> HealthChecks { get; set; }
@@ -16,7 +17,7 @@ namespace GuineaPigApi.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // HealtCheck config
+            // HealthCheck config
             modelBuilder.Entity<HealthCheck>()
                 .HasOne(h => h.GuineaPig)
                 .WithMany()

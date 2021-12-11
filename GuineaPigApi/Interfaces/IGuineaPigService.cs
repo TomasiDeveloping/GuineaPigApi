@@ -1,13 +1,13 @@
-﻿using GuineaPigApi.DTO_s;
+﻿using GuineaPigApi.DTOs;
 
 namespace GuineaPigApi.Interfaces
 {
     public interface IGuineaPigService
     {
-        Task<List<GuineaPigDTO>> GetGuineaPigsAsync();
-        Task<GuineaPigDTO> GetGuineaPigByIdAsync(int guineaPigId);
-        Task<GuineaPigDTO> InsertGuineaPigAsync(GuineaPigDTO guineaPigDTO);
-        Task<GuineaPigDTO> UpdateGuineaPigAsync(int guineaPigId, GuineaPigDTO guineaPigDTO);
+        Task<List<GuineaPigDto>> GetGuineaPigsAsync();
+        Task<GuineaPigDto?> GetGuineaPigByIdAsync(int guineaPigId);
+        Task<GuineaPigDto?> InsertGuineaPigAsync(GuineaPigDto? guineaPigDto);
+        Task<GuineaPigDto?> UpdateGuineaPigAsync(int guineaPigId, GuineaPigDto guineaPigDto);
         Task<bool> DeleteGuineaPigAsync(int guineaPigId);
     }
 }

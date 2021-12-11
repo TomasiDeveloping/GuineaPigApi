@@ -1,6 +1,6 @@
-﻿namespace GuineaPigApi.DTO_s
+﻿namespace GuineaPigApi.DTOs
 {
-    public class HealthCheckDTO
+    public class HealthCheckDto
     {
         public int Id { get; set; }
         public int GuineaPigId { get; set; }

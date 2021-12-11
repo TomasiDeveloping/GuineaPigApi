@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GuineaPigApi.DTO_s;
+using GuineaPigApi.DTOs;
 using GuineaPigApi.Models;
 
 namespace GuineaPigApi.Profiles
@@ -8,8 +8,8 @@ namespace GuineaPigApi.Profiles
     {
         public AutoMapperConfig()
         {
-            CreateMap<GuineaPig, GuineaPigDTO>().ReverseMap();
-            CreateMap<HealthCheck, HealthCheckDTO>().ReverseMap();
+            CreateMap<GuineaPig, GuineaPigDto>().ReverseMap();
+            CreateMap<HealthCheck, HealthCheckDto>().ReverseMap();
         }
     }
 }

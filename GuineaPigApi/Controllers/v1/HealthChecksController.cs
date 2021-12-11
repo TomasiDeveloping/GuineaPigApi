@@ -1,6 +1,5 @@
-﻿using GuineaPigApi.DTO_s;
+﻿using GuineaPigApi.DTOs;
 using GuineaPigApi.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuineaPigApi.Controllers.v1
@@ -28,24 +27,23 @@ namespace GuineaPigApi.Controllers.v1
         public async Task<IActionResult> GetHealthChecks(int healthCheckId)
         {
             var healthCheck = await _service.GetHealthCheckByIdAsync(healthCheckId);
-            if (healthCheck == null) return NotFound($"Kein Check gefunden mit der ID: {healthCheckId}");
             return Ok(healthCheck);
         }
 
         [HttpGet("guineaPig/{guineaPigId:int}")]
         public async Task<IActionResult> GetHealthChecksByGuineaPigId(int guineaPigId)
         {
-            var healthChecks = await _service.GetHealthChecksByGuinePigIdAsync(guineaPigId);
-            if (healthChecks.Count() < 0) return NoContent();
+            var healthChecks = await _service.GetHealthChecksByGuineaPigIdAsync(guineaPigId);
+            if (healthChecks.Count < 0) return NoContent();
             return Ok(healthChecks);
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertHealthCheck(HealthCheckDTO healthCheckDTO)
+        public async Task<IActionResult> InsertHealthCheck(HealthCheckDto healthCheckDto)
         {
             try
             {
-                var newHealthCheck = await _service.InsertHealthCheckAsync(healthCheckDTO);
+                var newHealthCheck = await _service.InsertHealthCheckAsync(healthCheckDto);
                 return Ok(newHealthCheck);
             }
             catch (Exception ex)
@@ -56,12 +54,12 @@ namespace GuineaPigApi.Controllers.v1
         }
 
         [HttpPut("{healthCheckId:int}")]
-        public async Task<IActionResult> UpdateHealthCheck(int healthCheckId, HealthCheckDTO healthCheckDTO)
+        public async Task<IActionResult> UpdateHealthCheck(int healthCheckId, HealthCheckDto healthCheckDto)
         {
             try
             {
-                if (healthCheckId != healthCheckDTO.Id) return BadRequest("Falsche ID");
-                var updatedHealthCheck = await _service.UpdateHealthCheckAsync(healthCheckId, healthCheckDTO);
+                if (healthCheckId != healthCheckDto.Id) return BadRequest("Falsche ID");
+                var updatedHealthCheck = await _service.UpdateHealthCheckAsync(healthCheckId, healthCheckDto);
                 return Ok(updatedHealthCheck);
             }
             catch(Exception ex)

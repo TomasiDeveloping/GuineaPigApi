@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GuineaPigApi.Data;
-using GuineaPigApi.DTO_s;
+using GuineaPigApi.DTOs;
 using GuineaPigApi.Interfaces;
 using GuineaPigApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,40 +17,39 @@ namespace GuineaPigApi.Services
             _mapper = mapper;
         }
 
-        public async Task<List<GuineaPigDTO>> GetGuineaPigsAsync()
+        public async Task<List<GuineaPigDto>> GetGuineaPigsAsync()
         {
             var guineaPigs = await _context.GuineaPigs
                 .AsNoTracking()
                 .ToListAsync();
-            return _mapper.Map<List<GuineaPigDTO>>(guineaPigs);
+            return _mapper.Map<List<GuineaPigDto>>(guineaPigs);
         }
 
-        public async Task<GuineaPigDTO> GetGuineaPigByIdAsync(int guineaPigId)
+        public async Task<GuineaPigDto?> GetGuineaPigByIdAsync(int guineaPigId)
         {
             var guineaPig = await _context.GuineaPigs
                 .AsNoTracking()
                 .FirstOrDefaultAsync(g => g.Id == guineaPigId);
-            if (guineaPig == null) return null;
-            return _mapper.Map<GuineaPigDTO>(guineaPig);
+            return guineaPig == null ? null : _mapper.Map<GuineaPigDto>(guineaPig);
         }
 
-        public async Task<GuineaPigDTO> InsertGuineaPigAsync(GuineaPigDTO guineaPigDTO)
+        public async Task<GuineaPigDto?> InsertGuineaPigAsync(GuineaPigDto? guineaPigDto)
         {
-            if (guineaPigDTO == null) return null;
-            var guineaPig = _mapper.Map<GuineaPig>(guineaPigDTO);
+            if (guineaPigDto == null) return null;
+            var guineaPig = _mapper.Map<GuineaPig>(guineaPigDto);
             await _context.GuineaPigs.AddAsync(guineaPig);
             await _context.SaveChangesAsync();
-            return _mapper.Map<GuineaPigDTO>(guineaPig);
+            return _mapper.Map<GuineaPigDto>(guineaPig);
         }
 
-        public async Task<GuineaPigDTO> UpdateGuineaPigAsync(int guineaPigId, GuineaPigDTO guineaPigDTO)
+        public async Task<GuineaPigDto?> UpdateGuineaPigAsync(int guineaPigId, GuineaPigDto guineaPigDto)
         {
             var guineaPig = await _context.GuineaPigs
                 .FirstOrDefaultAsync(g => g.Id == guineaPigId);
             if (guineaPig == null) return null;
-            _mapper.Map<GuineaPigDTO, GuineaPig>(guineaPigDTO, guineaPig);
+            _mapper.Map(guineaPigDto, guineaPig);
             await _context.SaveChangesAsync();
-            return _mapper.Map<GuineaPigDTO>(guineaPig);
+            return _mapper.Map<GuineaPigDto>(guineaPig);
         }
 
         public async Task<bool> DeleteGuineaPigAsync(int guineaPigId)
