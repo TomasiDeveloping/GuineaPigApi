@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {GuineaPigModel} from "../../models/guineaPig.model";
 import {GuineaPigService} from "../../services/guinea-pig.service";
 import {ToastrService} from "ngx-toastr";
@@ -15,7 +15,7 @@ export class GuineaPigEditComponent implements OnInit {
   isUpdate: boolean;
   currentGuineaPig: GuineaPigModel;
   // @ts-ignore
-  guineaPigForm: FormGroup;
+  guineaPigForm: UntypedFormGroup;
   genders = ['Weiblich', 'Männlich'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -63,13 +63,13 @@ export class GuineaPigEditComponent implements OnInit {
       lastHealthCheck = this.currentGuineaPig.lastHealthCheck;
     }
 
-    this.guineaPigForm = new FormGroup({
-      id: new FormControl(this.currentGuineaPig.id),
-      name: new FormControl(this.currentGuineaPig.name),
-      gender: new FormControl(this.currentGuineaPig.gender),
-      race: new FormControl(this.currentGuineaPig.race),
-      birth: new FormControl(new Date(this.currentGuineaPig.birth).toISOString().substr(0, 10)),
-      lastHealthCheck: new FormControl(lastHealthCheck)
+    this.guineaPigForm = new UntypedFormGroup({
+      id: new UntypedFormControl(this.currentGuineaPig.id),
+      name: new UntypedFormControl(this.currentGuineaPig.name),
+      gender: new UntypedFormControl(this.currentGuineaPig.gender),
+      race: new UntypedFormControl(this.currentGuineaPig.race),
+      birth: new UntypedFormControl(new Date(this.currentGuineaPig.birth).toISOString().substr(0, 10)),
+      lastHealthCheck: new UntypedFormControl(lastHealthCheck)
     });
   }
 
